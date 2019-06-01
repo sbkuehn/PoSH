@@ -6,8 +6,8 @@ Param(
     [string] [Parameter(Mandatory = $true)] $dns2
 )
 
-$wmi = Get-WmiObject win32_networkadapterconfiguration -filter "ipenabled = 'true'"
-$wmi.EnableStatic($staticIp, $cidrClass)
-$wmi.SetGateways($gateway, 1)
+$nic = Get-WmiObject win32_networkadapterconfiguration -filter "ipenabled = 'true'"
+$nic.EnableStatic($staticIp, $cidrClass)
+$nic.SetGateways($gateway, 1)
 $dns = $dns1,$dns2
-$wmi.SetDNSServerSearchOrder($dns)
+$nic.SetDNSServerSearchOrder($dns)
